@@ -1,7 +1,11 @@
 $(document).ready(function(){
 
-
-$('.main-slider').slick();
+if($('.main-slider').length){
+	$('.main-slider').slick({
+		arrows:false,
+		dots:true
+	});
+}
 
 
 	$.ajax({
