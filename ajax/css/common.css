@@ -12,6 +12,13 @@
 .relative {
 	position:relative;
 }
+.col-3 {
+	position: relative;
+	min-height: 1px;
+	float: left;
+	width:25%;
+	max-width:25%;
+}
 .col-4 {
 	position: relative;
 	min-height: 1px;
@@ -263,4 +270,23 @@ header:after {
 }
 .billed-section .billed-title {
 	font-size: 20px;
+}
+.billed-group {
+	margin-top:10px;
+	text-align:center;
+}
+.billed-group .casting:before {
+	display: inline-block;
+	content: '';
+	padding-top: 60%;
+	width: 55px;
+	background: url(../res/sub_movie.jpg) no-repeat center;
+	border-radius: 50%;
+}
+.billed-group .casting {
+	font-size:12px;
+	font-weight:600;
+}
+.billed-group .casting ~ span {
+	font-size:11px;
 }
