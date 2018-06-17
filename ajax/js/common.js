@@ -1,11 +1,17 @@
 $(document).ready(function(){
 
-if($('.main-slider').length){
-	$('.main-slider').slick({
-		arrows:false,
-		dots:true
-	});
-}
+	if($('.main-slider').length){
+		$('.main-slider').slick({
+			arrows:false,
+			dots:true
+		});
+	}
+    if($('.sub-slider').length) {
+        $(".sub-slider").slick({
+            arrows: false,
+            dots: true
+        });
+    }
 
 
 	$.ajax({
