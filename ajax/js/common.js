@@ -6,13 +6,6 @@ $(document).ready(function(){
 			dots:true
 		});
 	}
-    if($('.sub-slider').length) {
-        $(".sub-slider").slick({
-            arrows: false,
-            dots: true
-        });
-    }
-
 
 	$.ajax({
 		type:"GET",
@@ -23,13 +16,18 @@ $(document).ready(function(){
 			var html = "";
 			
 			data.forEach(function(v,i){ // value,index
-				html +="<h3>"+(i+1)+"위 : "+v.title+"<br><img style='' src='https://image.tmdb.org/t/p/w500/"+v.poster_path+"'>"+"</h3>"
+				//html +="<h3>"+(i+1)+"위 : "+v.title+"<br><img style='' src='https://image.tmdb.org/t/p/w500/"+v.poster_path+"'>"+"</h3>"
+				html +=
+							'<div class="main-visual" style="background-image:url(https://image.tmdb.org/t/p/w500'+v.poster_path+');">' +
+								'<div class="main-text-wrap">' +
+									'<h1>'+v.title+'</h1>' +
+									'<p class="sub-text">'+v+'</p>' +
+								'</div>' +
+							'</div>' +
 
-				console.log();
+				console.log(123);
 			});
-			$(".title").html(html);
-
-			
+			$(".main-slider").html(html);
 
 			//var array = [1,2,3,4,5];
 			//array.forEach( function( v, i ){
