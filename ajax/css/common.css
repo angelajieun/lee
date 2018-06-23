@@ -92,8 +92,7 @@
 /* main */
 .main-visual {
 	position:relative;
-	display:table;
-	height: 100vh;
+	height: 100vh !important;
 	padding: 0 20px;
 	background-image:url(../res/movie_poster.jpg);
 	background-repeat:no-repeat;
@@ -109,25 +108,32 @@
 	right: 0;
 	bottom: 0;
 	top: 0;
-	background-color: rgba(0,0,0,0.35);
+	background-color: rgba(0,0,0,0.6);
 	z-index:1;
 }
 .main-text-wrap{
-	position:relative;
-	display: table-cell;
-	top:-50px;
-	vertical-align: middle;
-	z-index:5;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 5;
 }
 h1 {
 	margin-bottom: 60px;
-	font-size: 40px;
+	font-size: 32px;
 	color:#fff;
 }
 .sub-text {
-	color:#fff;
-	font-size:15px;
-	line-height: 1.2;
+	color: #fff;
+    font-size: 15px;
+    line-height: 1.2;
+    overflow: hidden;
+    white-space: pre-line;
+    word-break: break-all;
+    width: 90%;
+    height: 56px;
+    margin: 0 auto;
 }
 .more-btn {
 	position: absolute;
@@ -143,6 +149,9 @@ h1 {
 	font-weight: 600;
 	color: #fff;
 	z-index: 5;
+}
+.more-btn a {
+	display:block;
 }
 /* slick custom */
 .slick-dots {
@@ -216,9 +225,9 @@ header:after {
 	pointer-events: none;
 }
 .contents h2 {
-	font-size:30px;
-	color:#fff;
-	margin: 30px 0 40px;
+	font-size: 28px;
+    color: #fff;
+    margin:20px 0 40px;
 }
 .contents h2 span {
 	font-size:22px;
@@ -274,10 +283,12 @@ header:after {
 	position:relative;
 	width: 100%;
 	height: 500px !important;
-	background:url(../res/sub/bg_ex1.jpg) no-repeat center;
+	/*background-image:url(../res/sub/bg_ex1.jpg);*/
+	background-repeat:no-repeat;
+	background-position:center;
 	background-size:cover;
-	-webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
-	filter: grayscale(100%);
+	/* -webkit-filter: grayscale(100%); Chrome, Safari, Opera
+	filter: grayscale(100%); */
 }
 .back-img:after {
 	content:'';
@@ -297,15 +308,12 @@ header:after {
 	margin-top:10px;
 	text-align:center;
 }
-.billed-group .casting:before {
+.billed-group  img {
 	display: block;
 	content: '';
 	width: 80%;
 	margin: 0 auto 10px;
-	padding-top: 80%;
-	background: url(../res/sub_movie.jpg) no-repeat center;
-	background-size: cover;
-	border-radius: 50%;
+	border-radius:50%;
 }
 .billed-group .casting {
 	text-transform: uppercase;
