@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <meta http-equiv="Content-Script-Type" content="text/javascript">
+        <meta http-equiv="Content-Style-Type" content="text/css">
+        <!-- 모바일 -->
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
+        <!-- css -->
+        <link rel="stylesheet" type="text/css" href="./css/reset.css">       
+        <style>
+            /* Display value */
+            .hide {
+            display: none !important; }
+
+            .block {
+            display: block !important; }
+
+            .inline-block {
+            display: inline-block !important; }
+
+            @media screen and (min-width: 544px) {
+            .sm-hide {
+                display: none !important; }
+            .sm-block {
+                display: block !important; }
+            .sm-inline-block {
+                display: inline-block !important; } }
+
+            @media screen and (min-width: 768px) {
+            .md-hide {
+                display: none !important; }
+            .md-block {
+                display: block !important; }
+            .md-inline-block {
+                display: inline-block !important; } }
+
+            @media screen and (min-width: 992px) {
+            .lg-hide {
+                display: none !important; }
+            .lg-block {
+                display: block !important; }
+            .lg-inline-block {
+                display: inline-block !important; } }
+
+            @media screen and (min-width: 1200px) {
+            .xl-hide {
+                display: none !important; }
+            .xl-block {
+                display: block !important; }
+            .xl-inline-block {
+                display: inline-block !important; } }
+
+            /*=================================================
+                        default-jg-tab
+            =================================================*/
+            /* 탭 */
+            .default-jg-tab .tab-ul ,.default-jg-tab2 .tab-ul{
+            position: relative;
+            overflow: hidden;
+            text-align: center; }
+
+            .default-jg-tab .tab-ul .nav-item,.default-jg-tab2 .tab-ul .nav-item {
+            display: inline-block;
+            width: 150px;
+            height: 35px;
+            line-height: 35px;
+            border: 1px solid #000;
+            background-color: #fff;
+            font-size: 14px;
+            letter-spacing: -0.02em; }
+
+            .default-jg-tab .tab-ul .nav-item.on, .default-jg-tab2 .tab-ul .nav-item.on {
+            border-color: #1880cf;
+            background-color: #1880cf;
+            color: #fff; }
+
+            .default-jg-tab .tab-ul a, .default-jg-tab2 .tab-ul a  {
+            display: block;
+            height: 100%; }
+
+            .default-jg-tab .tab-cont, .default-jg-tab2 .tab-cont {
+            display: none; }
+
+            .default-jg-tab .tab-cont.on, .default-jg-tab2 .tab-cont.on {
+            display: block; }
+
+            /* 탭 end */
+            .default-jg-tab .text-wrap p, .default-jg-tab2 .text-wrap p {
+            line-height: 1.7;
+            font-size: 14px;
+            color: #222; }
+
+        </style>
+        <!-- script -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+            
+				$(".default-jg-tab").sectionTab();
+            });
+
+            $.fn.sectionTab = function(parent){ // 인스턴스
+                parent = this ;
+                $(parent).addClass("sectionTab"); 
+
+				var sectionTabs = {
+					init: function(parent){
+						this.$tabItem = $(parent).find('.tab-ul .nav-item')
+						this.$tabContents = $(parent).find('.tab-cont')
+						this.$selectBoxParent = $(parent).find('.tab-ul')
+					},
+					event: function(){
+						this.$tabItem.on("click", this.changeListener.bind(this));
+						this.$selectBoxParent.on("change", this.changeListener.bind(this));
+						// EventListener 콜백함수의 this -> 이벤트의 대상(엘리먼트) -> this(=sectionTab)를 바인딩 해줘야됨
+					},
+					refreshView : function(index){ //클래스이름.prototype.메서드 = function(){}
+						// 탭 변경
+						this.$tabItem.removeClass('on');
+						this.$tabItem.eq(index).addClass('on');
+
+						// 컨텐츠
+						this.$tabContents.removeClass('on');
+						this.$tabContents.eq(index).addClass('on');
+
+						//셀렉트박스
+						this.$selectBoxParent.val(index);
+					},
+					changeListener : function(event){
+						// event -> 해당 EventListener 객체
+						console.log(event.type) // 클릭된 요소
+						var $this = event.currentTarget; //이벤트가 바인딩된 요소, 해당하는 요소를 반환합니다.
+						var index = 0;
+						switch (event.type) { //  이벤트의 유형을 문자열을 반환
+							case "click": index = $($this).index();               
+								break;
+							case "change": index = $($this).val();                       
+								break; 
+						}
+						this.refreshView(index);
+
+						//참조 : https://developer.mozilla.org/ko/docs/Web/API/EventTarget/addEventListener
+					}
+				}
+
+				// 선택자 정의
+                sectionTabs.init(parent);
+                //이벤트
+                sectionTabs.event();
+             
+            }
+            
+			
+                
+        </script>
+        <title>테스트</title>          
+    </head>
+    <body>
+        <div class="sub-article-wrap">
+            <div class="area">
+                <div class="default-jg-tab">
+                    <!-- PC -->
+                    <div class="tab-ul hide lg-block">
+                        <div class="nav-item on trs-prop-bg trs-prop-color trs-du-03"><a href="#">sample A</a></div>
+                        <div class="nav-item trs-prop-bg trs-prop-color trs-du-03"><a href="#">sample B</a></div>
+                        <div class="nav-item trs-prop-bg trs-prop-color trs-du-03"><a href="#">sample C</a></div>
+                        <div class="nav-item trs-prop-bg trs-prop-color trs-du-03"><a href="#">sample D</a></div>
+                    </div>
+                    <!-- mobile-->
+                    <select class="tab-ul">
+                        <option class="nav-item on trs-prop-bg trs-prop-color trs-du-03" value="0" seleted>sample A</option>
+                        <option class="nav-item trs-prop-bg trs-prop-color trs-du-03" value="1">sample B</option>
+                        <option class="nav-item trs-prop-bg trs-prop-color trs-du-03" value="2">sample C</option>
+                        <option class="nav-item trs-prop-bg trs-prop-color trs-du-03" value="3">sample D</option>
+                    </select>
+                    <div class="tab-cont-wrap">
+                        <div class="tab-cont on"> 
+                            <div class="text-wrap">
+                                <p>You’ve probably heard of Lorem Ipsum before – it’s the most-used dummy text excerpt out there.
+                                    People use it because it has a fairly normal distribution of letters and words (making it look like normal English), but it’s also Latin,
+                                    which means your average reader won’t get distracted by trying to read it. It’s perfect for showcasing design work as it should look when fleshed out with text,
+                                    because it allows viewers to focus on the design work itself, instead of the text.
+                                    It’s also a great way to showcase the functionality of programs like word processors, font types, and more.</p>
+                            </div>
+                        </div>
+                        <div class="tab-cont">
+                            <div class="text-wrap">
+                                <p>We’ve taken Lorem Ipsum to the next level with our HTML-Ipsum tool. As you can see, this Lorem Ipsum is tailor-made for websites and other online projects that are based in HTML.
+                                    Most web design projects use Lorem Ipsum excerpts to begin with, but you always have to spend an annoying extra minute or two formatting it properly for the web.</p>
+                            </div>
+                        </div>
+                        <div class="tab-cont">
+                            <div class="text-wrap">
+                                <p>Maybe you have a custom-styled ordered list you want to show off, or maybe you just want a long chunk of Lorem Ipsum that’s already wrapped in paragraph tags.
+                                    No matter the need, we’ve put together a number of Lorem Ipsum samples ready to go with HTML tags and formatting in place. All you have to do is click the heading of any section on this page,
+                                    and that HTML-Ipsum block is copied to your clipboard and ready to be loaded into a website redesign template, brand new design mockup, or any other digital project you might need dummy text for.</p>
+                            </div>
+                        </div>
+                        <div class="tab-cont">
+                            <div class="text-wrap">
+                                <p>No matter the project, please remember to replace your fancy HTML-Ipsum with real content before you go live - this is especially important if you're planning to implement
+                                    a content-based marketing strategy for your new creation! Lorem Ipsum text is all well and good to demonstrate a design or project,
+                                    but if you set a website loose on the Internet without replacing dummy text with relevant, high quality content, you’ll run into all sorts of potential Search Engine Optimization issues like thin content,
+                                    duplicate content, and more.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="default-jg-tab2">
+                    <!-- PC -->
+                    <div class="tab-ul hide lg-block">
+                        <div class="nav-item on trs-prop-bg trs-prop-color trs-du-03"><a href="#">sample A</a></div>
+                        <div class="nav-item trs-prop-bg trs-prop-color trs-du-03"><a href="#">sample B</a></div>
+                        <div class="nav-item trs-prop-bg trs-prop-color trs-du-03"><a href="#">sample C</a></div>
+                        <div class="nav-item trs-prop-bg trs-prop-color trs-du-03"><a href="#">sample D</a></div>
+                    </div>
+                    <!-- mobile-->
+                    <select class="tab-ul">
+                        <option class="nav-item on trs-prop-bg trs-prop-color trs-du-03" value="0" seleted>sample A</option>
+                        <option class="nav-item trs-prop-bg trs-prop-color trs-du-03" value="1">sample B</option>
+                        <option class="nav-item trs-prop-bg trs-prop-color trs-du-03" value="2">sample C</option>
+                        <option class="nav-item trs-prop-bg trs-prop-color trs-du-03" value="3">sample D</option>
+                    </select>
+                    <div class="tab-cont-wrap">
+                        <div class="tab-cont on"> 
+                            <div class="text-wrap">
+                                <p>You’ve probably heard of Lorem Ipsum before – it’s the most-used dummy text excerpt out there.
+                                    People use it because it has a fairly normal distribution of letters and words (making it look like normal English), but it’s also Latin,
+                                    which means your average reader won’t get distracted by trying to read it. It’s perfect for showcasing design work as it should look when fleshed out with text,
+                                    because it allows viewers to focus on the design work itself, instead of the text.
+                                    It’s also a great way to showcase the functionality of programs like word processors, font types, and more.</p>
+                            </div>
+                        </div>
+                        <div class="tab-cont">
+                            <div class="text-wrap">
+                                <p>We’ve taken Lorem Ipsum to the next level with our HTML-Ipsum tool. As you can see, this Lorem Ipsum is tailor-made for websites and other online projects that are based in HTML.
+                                    Most web design projects use Lorem Ipsum excerpts to begin with, but you always have to spend an annoying extra minute or two formatting it properly for the web.</p>
+                            </div>
+                        </div>
+                        <div class="tab-cont">
+                            <div class="text-wrap">
+                                <p>Maybe you have a custom-styled ordered list you want to show off, or maybe you just want a long chunk of Lorem Ipsum that’s already wrapped in paragraph tags.
+                                    No matter the need, we’ve put together a number of Lorem Ipsum samples ready to go with HTML tags and formatting in place. All you have to do is click the heading of any section on this page,
+                                    and that HTML-Ipsum block is copied to your clipboard and ready to be loaded into a website redesign template, brand new design mockup, or any other digital project you might need dummy text for.</p>
+                            </div>
+                        </div>
+                        <div class="tab-cont">
+                            <div class="text-wrap">
+                                <p>No matter the project, please remember to replace your fancy HTML-Ipsum with real content before you go live - this is especially important if you're planning to implement
+                                    a content-based marketing strategy for your new creation! Lorem Ipsum text is all well and good to demonstrate a design or project,
+                                    but if you set a website loose on the Internet without replacing dummy text with relevant, high quality content, you’ll run into all sorts of potential Search Engine Optimization issues like thin content,
+                                    duplicate content, and more.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
