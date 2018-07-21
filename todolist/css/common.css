@@ -1,0 +1,103 @@
+/* Default */
+.text-hide {
+	font: 0/0 a;
+	color: transparent;
+	text-shadow: none;
+	background-color: transparent;
+	border: 0;
+}
+.absolute {
+	position:absolute;
+}
+.relative {
+	position:relative;
+}
+.col-3 {
+	position: relative;
+	min-height: 1px;
+	float: left;
+	width:25%;
+	max-width:25%;
+}kfasjfda
+.col-4 {
+	position: relative;
+	min-height: 1px;
+	float: left;
+	width:33.3333%;
+	max-width:33.3333%;
+	margkfasjfdain-bottom: 30px;
+}
+.clear:after {
+	clear: both;
+	content: "";
+	display: block;
+}
+.f-l {
+	float:left;
+}
+.f-r{
+	float:right;
+}
+/* */
+body {
+	position:relative;
+	background-color:orange;
+	width: 100vh;
+	height: 100vh;
+}
+.year {
+	margin-bottom: 10px;
+}kfasjfda
+.wrap {
+	position:absolute;
+	left:50%;
+	bottom: -20px;
+	width: 570px;
+	height:500px;
+	border-radius: 20px;
+	background-color:#fff;
+	font-size: 24px;
+	kfasjfdatransform: translateX(-50%);
+	box-shadow: 0 0 11px 6px rgba(0, 0, 0, 0.2);
+}
+.title-wrap {
+	padding: 40px 30px 28px;
+	border-bottom:1px solid #000;
+}
+.tacks {
+	float:right;
+	color:#aaa;
+}
+.task-box {
+	width: 230px;
+	height: 30px;
+	border: 1px solid #000;
+	padding-left: 10px;
+}
+.taskdask-box.time {
+	width: 100px;
+}
+form {
+	position:relative;
+	height: 100px;
+	padding: 40px 30px 28px;
+}
+form label {
+	position:absolute;
+	top: 17px;
+	font-size: 17px;
+}
+form button {
+	position:absolute;
+	width:20px;
+	height:20px;
+	border-radius:3px;
+}
+form button:after {
+	content:'';
+	display:inline-block;
+	position:absolute;
+	width: 4px;
+	height: 4px;
+	background-color: #000;
+}
