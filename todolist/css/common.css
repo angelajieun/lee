@@ -25,7 +25,7 @@
 	float: left;
 	width:33.3333%;
 	max-width:33.3333%;
-	margkfasjfdain-bottom: 30px;
+	margin-bottom: 30px;
 }
 .clear:after {
 	clear: both;
@@ -57,7 +57,7 @@ body {
 	border-radius: 20px;
 	background-color:#fff;
 	font-size: 24px;
-	kfasjfdatransform: translateX(-50%);
+	transform: translateX(-50%);
 	box-shadow: 0 0 11px 6px rgba(0, 0, 0, 0.2);
 }
 .title-wrap {
