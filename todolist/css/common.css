@@ -23,8 +23,8 @@
 	position: relative;
 	min-height: 1px;
 	float: left;
-	width:33.3333%;
-	max-width:33.3333%;
+	width:33.33%;
+	max-width:33.33%;
 	margin-bottom: 30px;
 }
 .clear:after {
