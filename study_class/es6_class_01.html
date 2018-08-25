@@ -8,12 +8,78 @@
 		<script></script>
 	</head>
  <body>
+	<ul>
+		<li>1-10</li>
+		<li>2-20</li>
+		<li>3-30</li>
+	</ul>
+
  </body>
  <script>
+// // var 를 쓰는 경우 글로벌 변수니까 얘는 var node 부터 마지막 까지가 스코프임.
 	
+// 	var node = document.querySelector("ul"); // 여기부터
+// 	for(var k = 0; k < node.children.length; k++){ 
+// 		var el = node.children[k];
+// 		el.onclick = function(event){
+// 			event.target.style.backgroundColor = 'yellow';
+// 			console.log(k);
+// 		}
+// 	} //여기까지가 let의 스코프 이며 블락생성 범위
+// 	// k 에 3이라고 찍힘.
+
+// // let 를 쓰는 경우
+// 	var node = document.querySelector("ul");
+	
+// 	for(let k = 0; k < node.children.length; k++){ // 여기부터
+// 		var el = node.children[k];
+// 		el.onclick = function(event){
+// 			event.target.style.backgroundColor = 'yellow';
+// 			console.log(k);
+// 		}
+// 	} //여기까지가 let의 스코프 이며 블락생성 범위
+// 	// k 에 0,1,2 라 나옴.
+
+	// let sports = "축구";
+	// let music = "음악";
+
+	// function get(){
+	// 	let music = "클래식"; // 글로벌 객체의 값으로 안들어감.
+	// 	console.log(music);
+	// 	console.log(sports);
+	// 	console.log(this.music);
+	// }
+	// window.get();
+	// get();
+
+	// const get = () => 123;
+	// get();
+
+
+	// const Sports = function(){
+	// 	this.member = 11;
+	// }
+	// Sports.prototype.getMember = function(){}
+	// const sportsObj = new Sports(); // new 로 인스턴스를 만들게 되면 prototype 에 연결된것을 기준으로 인스턴스를 만듬.
+	// //sportsObj.__proto__ 여기에 첨부 넣어줌. 
+	// console.log(sportsObj.__proto__ === Sports.prototype);
+	// console.log(sportsObj.__proto__.getMember=== Sports.prototype.getMember);
+
+	// //인스턴스의 __proto__ 에 추가하면 인스턴스를 새성한 Sports.prototype 에 추가되고 이것을 __proto__에서 참조.
+
 	debugger;
+	const Sports = function(){
+		this.count = 123;
+	} // 인스턴스 프로퍼티라 같이 가지 않음.
 
+	Sports.prototype.getCount = function(){return this.count;}
+	
+	const Music = function(){};
+	const obj = Object.setPrototypeOf(Music, Sports.prototype);
 
+	const result = obj.getCount();
+	
+	console.log(result);
  </script>
 
  
