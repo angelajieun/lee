@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!--============ SCRIPT ================-->
+		<script></script>
+	 </head>
+ <body>
+ </body>
+ <script>
+	// window.onload = function(){
+	// 	debugger;
+	// 	var sports = function(){};
+
+	// 	var dummy;
+	// }
+
+	// var a = new Number('123');
+	// undefined
+
+	//1. 함수 선언식
+	function myHome(book,video,audio){ //얘는 할당은 아님 이름이 있는 함수
+		return book + video + audio;
+	}
+	console.log(myHome('책','비디오','오디오'));
+
+	//2. 함수 표현식 var a = 1+2 -> 1+2가 표현식인거임. return 값이 없으면 undefine 항상 리컨값이 있음.
+	var name = function(book,video,audio){ // func 오브젝트를 생성하여 변수에 할당 //이름이 없어서 키 벨류로 사용 네임을 키 값으로
+		return book + video + audio;
+	};
+	console.log(myHome('책','비디오','오디오'));
+
+
+	//3. 함수 해석 순서
+	function sport(){
+		//debugger;
+		var player = 11;
+		function soccer(){
+			return player;
+		}
+		var baseball = function(){
+			soccer();
+		}
+	};
+	sport();
+	//자바스크립트는 키 벨류 로 되는데 처음에 player에 없으니 언디파인드라는 벨류로 셋팅되는것
+	// basebell 도 변수로 해석된것.
+
+	// function sport(){};
+	// var sports;
+	// var member;
+	// var sports = function(){};
+	// var member = 123;
+
+	//1. 함수 선언문, 호출, 선언문
+	function book(){
+		return 1;
+	};
+	book();
+	function book(){
+		return 5;
+	};
+	// 2.함수 표현식, 호출, 표현식
+	var star = function(){
+		return 10;
+	} 
+	star();
+	var star = function(){
+		return 15;
+	}
+	// 3. 선언문, 호출, 표현
+	function air(){
+		return 20;
+	}
+	air();
+	var air = function(){
+		return 25;
+	}
+	// 4. 표현식, 호출, 선언
+	var phone = function(){
+		return 30;
+	}
+	phone();
+	function phone(){
+		return 35;
+	}
+
+	// 스코프 구조
+	debugger;
+	function sales(){
+		var abc = 123;
+		function get(){
+			function discount(){};
+			discount();
+			return 123;
+		}
+		get();
+		function set(){
+			abc = 555;
+		}
+		// get과 set의 스코프는 같음 그리하여 변수 abc를 사용할수 있음 그것이 클로져. 악!!! 
+	}
+	sales();
+
+	var value = 123;
+	function book(){ // book 앞에 오므젝트가 없으니 글로벌 오브젝트인거임
+		return value;
+		value = 456;
+	}
+	book();
+
+
+	'use strict'
+	var outside = 'global';
+	var getCalue = function(){
+		inside = 'local'
+	}
+	getCalue();
+
+	var side = 'global';
+	var getValue = function(){
+		side = 'local'
+		return side;
+	}
+	console.log(getValue);
+	console.log(side);
+
+ </script>
+
+ 
+</html>

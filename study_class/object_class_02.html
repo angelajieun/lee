@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!--============ SCRIPT ================-->
+		<script></script>
+	 </head>
+ <body>
+ </body>
+ <script>
+
+	// var sport = function(){
+	// 	var value = 123;
+	// 	function baseball(){
+	// 		console.log(value);
+	// 	}
+	// 	function soccer(){
+	// 		console.log(value);
+	// 	}
+	// 	baseball();
+	// 	soccer();
+	// };
+	// sport();
+
+// <!-- 
+// 	function Sports(value){
+// 		this.value = value; //	this는 자기를 만든애가 디스됨.(생성안에 인스턴스) this가 스코프역활이니 다 같이 쓸수 있는것. 그렇게 쓸라고 인스턴스를 만드는것.
+// 	};
+// 	Sports.prototype.getValue = function(){ //프로토타입에 연결 시키고 오브젝트임. 그래서 키벨류키벨류로 쓸수잇음
+// 	//Sports.abc 도 됨.
+// 	//Sports.isarray();
+// 		return this.value + 300;
+// 	}
+// 	var sportsOgj = new Sports(123); //생성자 함수 생성.
+// 	console.log(sportsOgj.value);
+// 	console.log(sportsOgj.getValue()); -->
+	
+	/*
+		1. 인스턴스 생성 순서 및 방법
+		sports 오브젝트를 생성
+
+		인스턴스를 만들꺼면 첫문자가 대문자. 그걸보고 예상가능.
+		대문자만 보고 밑에 프로토타입이 나오겟네라고 생각하는거고, 대문자로 써야 생성자 함수라는 의미가 들어있는것.
+	
+		값에 따라 인스턴스가 각각 가지고 있는거 그럴려고 쓰는것.
+		함수는 마지막에 나온얘가 값이 되니까.
+		한번 인스턴스를 만들면 그 안에 벨류프로퍼티를 각각 가져감.
+
+
+	*/
+
+	// var sports = {
+	// 	member : 123,
+	// 	soccer : function(){
+	// 		//debugger;
+	// 		return this.member;
+	// 	}
+	// }
+	// console.log(sports.soccer());
+
+	/*
+	sports.soccer() 형태로 호출하면
+	호출한 함수 앞에 작성한 sports 오브젝트를 this 바인딩 컨포넌트에 설정합니다.
+
+	싱행 콘텍스트 = {
+		환경 컨포넌트 : {
+			렉시컬 환경 컴포넌트 = {
+				환경 레코드 : {
+					선언적 환경 레코드 : {}
+				}
+			},
+			변수 환경 컴포넌트 = {
+				//렉시컬 환경 컴포넌트와 같음
+			}
+		}
+	}
+	* this 바인딩 컴포넌트 : { // 자기를 호출한 오브젝트를 바인딩 똭. (중요함)
+		member : 123,
+		soccer : function(){return this.member} // this 동적,
+	}
+	호출한 함수 앞에 작성한 오브젝트가 this 바인딩 컴포넌트에 설정(참조)되고
+	this가 this 바인딩 컴포넌트를 참조하므로 member 프로퍼ㅣ 값인 123이 반환된다.
+	*/
+
+//this 참조 오브젝트 예시 1
+	var sports = {
+		value:123,
+		get : function(){
+			var value = 456;
+			console.log(this === window);
+			console.log(this.value);
+		}
+	}
+	var comp = sports.get; //get()로 안써도 호출됨, 그것을 개터? 라고함.
+	//sports.get; 는 comp에 담긴건 경로일뿐 
+	comp();
+
+	/*
+	var comp 에 window.comp(); 이렇게 부르지 안았으니, 글로벌 오브젝트라 값이 없는거.
+	*/
+
+	//예시 2
+	function get(){
+		console.log('사과');
+	}
+	var sports = function(){
+		function get(){
+			console.log('포도');
+		}
+		this.get(); //sports.get 포도 // 디스는 디스바인딩컴포넌트에 가서 get이 있는지 확인, this가 윈도우니 밖에 있는 걔한테 가는거.
+		get(); // 환경레코드에 있는거 먼저 찾는
+
+	}
+	sports(); //앞에 아무것도 없으니 글로벌오브젝트 그래서 this가 위에꺼 아님, 밖에 있는 사과한테감
+				// 밑에 get();은 밖에있는게 호출 안됨 왜? 
+
+
+	// this 와 인스턴스
+	var sales = {}; //오브젝트,
+	sales.Book = function(option){
+		this.option = option;
+	}
+	sales.Book.prototype = {
+		getValue : function(){
+			console.log(this.option);
+		}
+	}
+	var obj = new sales.Book(100);
+	obj.getValue();
+
+	// this & bind
+	var bonus = {
+		value : 123,
+		get : function(){
+			return this.value;
+		}
+	}
+	console.log(bonus.get()); // this - bonus
+	var fnObj = bonus.get.bind(); // 호출되진ㄴ 않고 오브젝트를 넘겨주는것.
+	console.log(typeof fnObj);
+	console.log(fnObj()); //얘 자체를 호출할 수는 없으니 언디파인드.
+
+	fnObj = bonus.get.bind(bonus); // this -> bonus
+	console.log(fnObj);
+
+	// 재귀함수
+	var sports = {
+		soccer : {member : 11 , time : 90},
+		basketball : {member : 5, time : 48}
+	};
+	function showValue(sports){
+		var type, obj;
+		for(type in sports){
+			obj = sports[type];
+			typeof obj === "object" ?
+			showValue(obj) :
+			console.log(type, ":", obj);
+		}
+	}
+	showValue(sports);
+
+
+ </script>
+
+ 
+</html>
