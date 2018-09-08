@@ -18,7 +18,104 @@
 	// const result = (Math.abs(0.1 + 0.2 - 0.3) < Number.EPSILON)
 	// console.log(result);
 
+	const one = [10,11,12];
+	two = [21,22,23];
+
+	let result = one.concat(two);
+	console.log(result, result.length);
+
+	two[Symbol.isConcatSpreadable] = false;
+	result = one.concat(two);
+	console.log(result, result.length);
+
+	two[Symbol.isConcatSpreadable] = true;
+	result = one.concat(two);
+	console.log(result, result.length);
+
+
+
+	//Array-like object 지만 array 처럼 쓸수 있는것.
+	const one = [10,11,12];
+	const fiveSix = {0:"five", 1:"six"};
+	let result = one.concat(fiveSix);
+
+	const arrayLike = {
+		[Symbol.isConcatSpreadable]:true,
+		0:"five", 1:"six", length:2
+	}
+	result = one.concat(arrayLike);
+	console.log(result, result.length);
+
+	// Symbol.species
+
+	class ExtendArray extends Array{
+		static get [Symbol.species](){
+			return Array;  // 호출한 인스턴스를 반환하지 않고 Array를 반환함.
+		}
+	}
+	const oneInstance = new ExtendArray(1,2,3);
+
+	const twoInstance = oneInstance.slice(1,2);
+
+	console.log(oneInstance instanceof ExtendArray);
+	console.log(twoInstance instanceof Array);
+	console.log(twoInstance instanceof ExtendArray);
+
+
+	class ExtendOne extends Array{
+		showOne(){
+			console.log("ExtendOne");
+		}
+	}
+	class ExtendTwo extends Array{
+		static get [Symbol.species](){
+			return ExtendOne; // 인스턴스로 반환
+		}
+		showTwo(){
+			console.log("ExtendTwo");
+		}
+	};
+	const twoInst = new ExtendTwo(10,20,30);
+	const oneFilter = twoInst.filter(value => value > 10);
+	console.log(oneFilter);
+	oneFilter.showOne();
+	console.log(oneFilter.showTwo); // 인스턴스를 바꼇기 때문에 언디파인드
+
+	// Map
+	const newMap = new Map([["key1","value1"]]);
+	// {key:value} 가 아닌 ["key1","value1"] 형태
+	// NaN 을 같은 값으로 인식 이외 값은 === 으로 비교 null 은 undefined
+	// 컬렉션일때 사용성 높음
+	// key, value 형태이고 이터러블일 때는 Map 사용
+	// 값과 함수가 혼합된 형태는 Object 사용 - 싱글톤(singleton) object
 	
+	const emptyMap = new Map();
+	const newMap = new Map([
+	["key1", "val1"],
+	["key2", "val2"],
+	["key1", "sports"]
+	]);
+
+	for (const ary of newMap) {
+	console.log(ary);
+	}
+	for (const [key, value] of newMap) {
+	console.log(`${key} : ${value}`);
+	}
+	console.dir(newMap);
+	
+	//set ()
+	newMap.set({},"오브젝트"); // 키값에 오브젝트를 넣을 수 있음.
+
+	//
+	const newMap = new Map();
+	newMap.set({},"objec");
+	console.log(newMap.get({})) // 얘는 새로운 {} 를 만든거이기 때문에 언디파이드임
+	
+
+
+
+
  </script>
 
  
