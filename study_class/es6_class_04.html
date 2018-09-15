@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!--============ SCRIPT ================-->
+		<script></script>
+	</head>
+ <body>
+	
+ </body>
+ <script>
+	//Reflect
+	const sports = {
+		event:"축구",
+		ground : "상암",
+		get getGame(){
+			return this.event + ":" + this.ground;
+		}
+	}
+	console.log(Reflect.get(sports,"event"));
+	console.log(Reflect.get(sports, "getGame"));
+	console.log(Reflect.get(sports, "getGame",{
+		event:"농구",
+		ground:"잠실"
+	}));
+	// ReFlect의 3번째 인자는 this를 참조하므로 object 형태로 들어가야됨.
+
+ </script>
+ 
+</html>

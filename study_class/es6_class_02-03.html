@@ -111,7 +111,30 @@
 	const newMap = new Map();
 	newMap.set({},"objec");
 	console.log(newMap.get({})) // 얘는 새로운 {} 를 만든거이기 때문에 언디파이드임
+
+	//
+	const newMap = new Map();
+	newMap.set({},"objec");
+	console.log(newMap.get({})) // 얘는 새로운 {} 를 만든거이기 때문에 언디파이드임
 	
+
+	const target = {food : "bob"};
+	const handler = {
+		get(target, key){
+			return target[key] + ", spoon";
+		},
+		set(target, key){}
+	}
+	const middle = new Proxy(target, handler);
+	const left = middle.food;
+	console.log(left);
+
+	
+
+
+
+
+
 
 
 
