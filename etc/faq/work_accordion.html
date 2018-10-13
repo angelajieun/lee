@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!--============ CSS ================-->
+		<link rel="stylesheet" href="reset.css" media="all">
+		<!--============ SCRIPT ================-->
+		<script type="text/javascript" src="jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="script.js"></script>
+		<!-- css -->
+		<style type="text/css">
+			/*=====FAQ=====*/
+			.accordian-wrap .accordian{
+			}
+			.accordian-wrap .accordian li a {
+				display:block;
+				padding: 15px 10px;
+				border-top: 1px solid #ccc;
+				font-size: 12px;
+				color: #444;
+				overflow: hidden;
+			}
+			.accordian-wrap .accordian .aco:last-child a {
+				border-bottom: 1px solid #ccc;
+			}
+			.accordian-wrap .accordian span{
+				display: block;
+				float: left;
+				line-height: 30px;
+			}
+			.accordian-wrap .accordian .aco.on .faq-wrap{
+				background-color: #ffdc3b;
+			}
+			.accordian-wrap .accordian .faq-body {
+				padding-left:15px;
+			}
+			.accordian-wrap .accordian .faq-arrow{
+				width: 12px;
+				height: 30px;
+				float: right;
+				background: url(/reference/res/imgs/board/faq-arrow-down.png);
+				background-repeat: no-repeat;
+				background-position: 50%;
+			}
+			.accordian-wrap .accordian .aco.on .faq-arrow{
+				transform:rotate(-180deg);
+			}
+			.accordian-wrap .aco .sub-content{
+				display:none;
+			}
+			.accordian-wrap .aco.on .sub-content {
+				display: block;
+			}
+			.accordian-wrap .sub-content .answer-wrap{
+				background-color: #fafafa;
+				color: #777;
+			}
+			.accordian-wrap .aco:last-child .sub-content .answer-wrap {
+				border-top: 0;
+			}
+
+			@media screen and (min-width:992px) {
+				/* 탭 */
+				.faq-tab .tab-ul {
+					height: inherit;
+					margin-bottom: 48px;
+					border-bottom: 1px solid #d1d1d1;
+				}
+
+				.faq-tab .nav-item {
+					width: auto;
+					margin-right: 37px;
+					font-size: 15px;
+				}
+
+				.jg-tab{
+				}
+				.jg-tab .tab-select{
+					margin-bottom: 50px;
+					padding: 5px;
+				}
+				.jg-tab .tab-ul{
+					height: 40px;
+				}
+				.jg-tab .nav-item{
+					width: 115px;
+					height: 40px;
+					font-size: 13px;
+					letter-spacing: -0.03em;
+				}
+				.jg-tab .nav-item a{
+					display: block;
+					height: 100%;
+				}
+
+				/* FAQ */
+				#faq-faq-page{
+					padding-bottom: 70px;
+				}
+				.accordian-wrap .accordian .faq-body {
+					padding-left: 20px;
+				}
+				.accordian-wrap .accordian li a {
+					padding-right: 20px;
+					padding-left: 20px;
+					font-size: 14px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="accordian-wrap">
+			<ul class="accordian">
+				<!-- 아코디언1 -->
+				<li class="aco">
+					<a href="#" class="faq-wrap trs-du-03 trs-prop-bg">
+						<span class="faq-title trs-du-03 trs-prop-bg">Q</span>
+						<span class="faq-body faq-body-main trs-du-03 trs-prop-color">
+							아코디언 타이틀1
+						</span>
+						<span class="faq-arrow trs-du-03 trs-prop-transform"></span>
+					</a>
+					<ul class="sub-content">
+						<li>
+							<a href="javascript:;" class="answer-wrap">
+								<span class="faq-title answer">A</span>
+								<span class="faq-body">
+									아코디언 소제목1
+								</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<!-- 아코디언2 -->
+				<li class="aco">
+					<a href="#" class="faq-wrap trs-du-03 trs-prop-bg">
+						<span class="faq-title trs-du-03 trs-prop-bg">Q</span>
+						<span class="faq-body faq-body-main trs-du-03 trs-prop-color">
+							아코디언 타이틀2
+						</span>
+						<span class="faq-arrow trs-du-03 trs-prop-transform"></span>
+					</a>
+					<ul class="sub-content">
+						<li>
+							<a href="javascript:;" class="answer-wrap">
+								<span class="faq-title answer">A</span>
+								<span class="faq-body">
+									아코디언 소제목2
+								</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<!-- 아코디언3 -->
+				<li class="aco">
+					<a href="#" class="faq-wrap trs-du-03 trs-prop-bg">
+						<span class="faq-title trs-du-03 trs-prop-bg">Q</span>
+						<span class="faq-body faq-body-main trs-du-03 trs-prop-color">
+							아코디언 타이틀3
+						</span>
+						<span class="faq-arrow trs-du-03 trs-prop-transform"></span>
+					</a>
+					<ul class="sub-content">
+						<li>
+							<a href="javascript:;" class="answer-wrap">
+								<span class="faq-title answer">A</span>
+								<span class="faq-body">
+									아코디언 소제목3
+								</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>
