@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!--============ SCRIPT ================-->
+		<script></script>
+	</head>
+ <body>
+	
+ </body>
+ <script>
+	// var min_len = $(val).data("minlen")||"";
+		// var max_len = $(val).data("maxlen")||"";
+
+		// if(min_len != "" && value.length < min_len){
+		//   output = err_msg ? err_msg : label + getPostposition(label,"은") + "" + min_len + "글자 이상이어야 합니다";
+		//   return false;
+		// }
+		// else if(max_len != "" && value.length < max_len){
+		//   output = err_msg ? err_msg : label + getPostposition(label,"은") + "" + max_len + "글자 이하이어야 합니다";
+		//   return false;
+		// }
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// 목표 value.length == 5   min_len == 8 // max_len == 10
+		var min_len = 8;
+		var max_len = 10;
+		var value = 5;
+		var textSum = "비밀번호는 "
+		var testSumUP = "글자 이상"
+		var testSumDown = "글자 이하"
+		var testCenter = "이어야 합니다";
+		//비밀번호는 8글자이상 10글자 이하이어야 합니다
+		if((min_len != "" && value < min_len) || (max_len != "" && value < max_len)){
+			if(max_len==""){
+				textSum + min_len + testSumUP + testCenter;
+			}else if(min_len==""){
+				textSum + max_len + testSumDown + testCenter;
+			}else {
+				textSum + min_len + testSumUP + max_len + testSumDown + testCenter;
+			}
+		}
+		
+
+ </script>
+ 
+</html>
