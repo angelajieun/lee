@@ -1,0 +1,7 @@
+.form,
+.greeings {
+  display:none;
+}
+.showing {
+  display:block;
+}
